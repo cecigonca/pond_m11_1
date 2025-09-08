@@ -2,7 +2,7 @@
 set -euo pipefail
 
 CLUSTER_NAME="k3d-nginx-hpa"
-K3D="./k3d/k3d.exe"; [ -x "$K3D" ] || K3D="k3d"
+K3D="./k3d.exe"; [ -x "$K3D" ] || K3D="k3d"
 
 echo "[+] Creating cluster: $CLUSTER_NAME"
 "$K3D" cluster create "$CLUSTER_NAME" \

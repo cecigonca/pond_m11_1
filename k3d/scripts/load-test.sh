@@ -4,7 +4,6 @@ set -euo pipefail
 DURATION=${1:-120s}
 CONN=${2:-100}
 URL=${3:-http://127.0.0.1:8080/}
-
 if command -v hey >/dev/null 2>&1; then
   hey -z "$DURATION" -c "$CONN" "$URL"
 else
