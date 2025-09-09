@@ -138,7 +138,7 @@ nginx-5b6d78dc8f-zbsqn   1/1     Running   0          15m
 ```
 
 **Print do resultado:**
-![Resultado](print.png)
+![Resultado](resultado-pond1-11.png)
 
 ## Como Limpar o Ambiente
 
