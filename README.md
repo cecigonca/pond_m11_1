@@ -1,16 +1,16 @@
 # Atividade Ponderada - Kubernetes Autoscaling com K3d e HPA
-
-A atividade consiste na criação de um **cluster Kubernetes local com K3d** e na aplicação de **escalabilidade horizontal automática (Horizontal Pod Autoscaler - HPA)** em uma aplicação NGINX.  
+Esta atividade prática teve como objetivo aplicar os conceitos de Kubernetes e escalabilidade, criando um cluster local com K3d e configurando o Horizontal Pod Autoscaler (HPA) sobre uma aplicação NGINX.
 
 ## Objetivo
-Compreender na prática como o Kubernetes consegue ajustar o número de réplicas de uma aplicação de forma dinâmica com base em métricas de uso de CPU.
+Compreender como o Kubernetes consegue ajustar dinamicamente o número de réplicas de uma aplicação com base no consumo de CPU.
 
-- Criar um cluster Kubernetes local utilizando **K3d**.  
-- Implantar uma aplicação web (NGINX) em um **Deployment**.  
-- Configurar um **Service** para expor a aplicação.  
-- Instalar o **Metrics Server** para coleta de métricas.  
-- Aplicar um **Horizontal Pod Autoscaler (HPA)** para escalar automaticamente a aplicação entre 2 e 10 réplicas.  
-- Realizar testes de carga e analisar o comportamento do HPA.  
+Para isso, foram realizadas as seguintes etapas:
+- Criar um cluster Kubernetes local utilizando **K3d** 
+- Implantar uma aplicação web (NGINX) em um **Deployment**  
+- Configurar um **Service** para expor a aplicação
+- Instalar o **Metrics Server** para coleta de métricas 
+- Aplicar um **Horizontal Pod Autoscaler (HPA)** para escalar automaticamente a aplicação entre 2 e 10 réplicas  
+- Realizar testes de carga e analisar o comportamento do HPA
 
 ## Tecnologias Utilizadas
 - **Docker Desktop** — execução de containers  
@@ -39,12 +39,12 @@ k3d/
 ````
 
 ## Pré-requisitos
-- **Docker Desktop** rodando (com WSL2 habilitado)  
-- **kubectl** instalado (verifique com `kubectl version --client`)  
+- **Docker Desktop** rodando 
+- **kubectl** instalado (`kubectl version --client`)  
 - **Git Bash** (para rodar scripts `.sh`)  
 - **PowerShell** (para os demais comandos)  
 - **k3d** pode ser o já incluso no repositório (`k3d.exe`)  
-- Permitir conexões `localhost` nas portas **6550** (API do cluster) e **8080** (aplicação)  
+- Portas **6550** (API do cluster) e **8080** (aplicação) liberadas no `localhost`
 
 ## Como Executar o Projeto
 - Comandos com `.\k3d.exe`, `kubectl` → rodar no **PowerShell**  
@@ -122,7 +122,7 @@ kubectl -n autoscale-demo top pods
 
 ## Resultados Obtidos
 
-Após a implantação, o HPA foi criado corretamente:
+Durante os testes, foi possível observar que o HPA foi criado corretamente:
 
 ```text
 NAME        REFERENCE          TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
@@ -150,11 +150,10 @@ kubectl delete -k ./k8s/
 ```
 
 ## Conclusão
+O cluster foi criado corretamente no K3d, o Metrics Server passou a fornecer métricas e o HPA monitorou a aplicação sem problemas.
 
-* O cluster Kubernetes foi criado com sucesso no **K3d**.
-* O **Metrics Server** coletou métricas de CPU/memória.
-* O **Horizontal Pod Autoscaler** foi configurado corretamente.
-* **Resultado:** como o NGINX consome poucos recursos, o HPA não precisou escalar além das 2 réplicas mínimas.
-* Em cenários com maior carga (ex.: aplicação PHP+Apache com stress), o HPA aumentaria o número de pods para manter a meta de 50% de CPU.
+Durante os testes, o consumo de CPU permaneceu baixo, por isso o HPA não escalou além das duas réplicas mínimas. Esse comportamento confirma que o mecanismo de autoscaling só é ativado quando a carga realmente ultrapassa a meta configurada (50%).
+
+Assim, a atividade cumpriu seu papel de demonstrar, na prática, como o Kubernetes gerencia a escalabilidade horizontal, permitindo compreender melhor como esses recursos são aplicados em cenários reais.
 
 
