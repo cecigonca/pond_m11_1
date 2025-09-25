@@ -156,4 +156,6 @@ Durante os testes, o consumo de CPU permaneceu baixo, por isso o HPA não escalo
 
 Assim, a atividade cumpriu seu papel de demonstrar, na prática, como o Kubernetes gerencia a escalabilidade horizontal, permitindo compreender melhor como esses recursos são aplicados em cenários reais.
 
+## Demonstração
+[Link para pasta no Google Drive com vídeo de demonstração](https://drive.google.com/drive/folders/1iOkzH15NLHZcgKX5GmsAb1lfoysjpm5T?usp=sharing)
 
